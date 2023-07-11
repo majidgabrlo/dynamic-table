@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Column from "./components/Column";
+import Table from "./components/Table";
+
+type User = {
+  name: string,
+  number: number
+}
+
+const users: User[] = [{ name: "Majid", number: 1 }, { name: "Milad", number: 2 }]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Table data={users} color="red">
+        <Column<User> title={<div style={{background:"cyan"}}>Name</div>} render={(user) => <div>{user?.name}</div>} />
+        <Column<User> title="number" render={(user) => <div style={{background:"red"}}>{user?.number}</div>} />
+        <Column<User> title="Majid" render={(user) => <div style={{background:"blue"}}>{user?.number}</div>} />
+      </Table>
     </div>
   );
 }
